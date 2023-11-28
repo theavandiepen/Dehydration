@@ -24,7 +24,7 @@ public class ItemMixin {
 
     @Inject(method = "finishUsing", at = @At(value = "HEAD"))
     private void finishUsingMixin(ItemStack stack, World world, LivingEntity user, CallbackInfoReturnable<ItemStack> info) {
-        if (!stack.isFood() && user instanceof PlayerEntity player) {
+        if (user instanceof PlayerEntity player) {
             int thirstQuench = 0;
             if (stack.isIn(TagInit.HYDRATING_STEW)) {
                 thirstQuench = ConfigInit.CONFIG.stew_thirst_quench;
